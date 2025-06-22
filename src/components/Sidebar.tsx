@@ -17,8 +17,8 @@ const menuItems = [
   { icon: FileText, label: 'Laporan', path: '/reports' },
   // { icon: Map, label: 'Peta Intelijen', path: '/intelligence-map' },
   { icon: Brain, label: 'AI Analytics', path: '/ai-analytics' },
-  { icon: Briefcase, label: 'Manajemen Kasus', path: '/case-management' },
-  { icon: Settings, label: 'User Tracking', path: '/admin' },
+  // { icon: Briefcase, label: 'Manajemen Kasus', path: '/case-management' },
+  { icon: Settings, label: 'System Log', path: '/admin' },
 ];
 
 export function Sidebar() {

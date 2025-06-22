@@ -43,7 +43,6 @@ const riskData = [
 ];
 
 const recentActivities = [
-  { id: 1, type: 'fraud', message: 'Potensi fraud terdeteksi di Desa Sukamaju', time: '5 menit lalu', priority: 'high' },
   { id: 2, type: 'report', message: 'Laporan baru dari masyarakat di Desa Makmur', time: '12 menit lalu', priority: 'medium' },
   { id: 3, type: 'case', message: 'Kasus KOR-2024-001 telah diselesaikan', time: '1 jam lalu', priority: 'low' },
   { id: 4, type: 'anomaly', message: 'Anomali keuangan ditemukan di 3 desa', time: '2 jam lalu', priority: 'high' },
@@ -88,6 +87,20 @@ export function Dashboard() {
         <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
           <div className="flex items-center justify-between">
             <div>
+              <p className="text-gray-400 text-sm">Tingkat Penyelesaian</p>
+              <p className="text-3xl font-bold text-white">78%</p>
+              <p className="text-green-400 text-sm flex items-center mt-1">
+                <CheckCircle className="h-4 w-4 mr-1" />
+                +5% dari target
+              </p>
+            </div>
+            <Activity className="h-12 w-12 text-green-500" />
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
               <p className="text-gray-400 text-sm">Laporan Aktif</p>
               <p className="text-3xl font-bold text-white">84</p>
               <p className="text-orange-400 text-sm flex items-center mt-1">
@@ -110,20 +123,6 @@ export function Dashboard() {
               </p>
             </div>
             <AlertTriangle className="h-12 w-12 text-red-500" />
-          </div>
-        </div>
-
-        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-400 text-sm">Tingkat Penyelesaian</p>
-              <p className="text-3xl font-bold text-white">78%</p>
-              <p className="text-green-400 text-sm flex items-center mt-1">
-                <CheckCircle className="h-4 w-4 mr-1" />
-                +5% dari target
-              </p>
-            </div>
-            <Activity className="h-12 w-12 text-green-500" />
           </div>
         </div>
       </div>
@@ -225,29 +224,29 @@ export function Dashboard() {
         <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
           <h3 className="text-xl font-semibold text-white mb-4">Ringkasan Intelijen AI</h3>
           <div className="space-y-4">
-            <div className="p-4 bg-blue-600 bg-opacity-20 border border-blue-600 rounded-lg">
+            <div className="p-4 bg-green-600 bg-opacity-20 border border-green-600 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-blue-400 font-medium">Deteksi Fraud</h4>
-                <span className="text-blue-400 text-sm">Confidence: 87%</span>
+                <h4 className="text-green-400 font-medium">Tren Laporan</h4>
+                {/* <span className="text-green-400 text-sm">Confidence: -5%</span> */}
               </div>
-              <p className="text-gray-300 text-sm">15 potensi fraud terdeteksi dalam 24 jam terakhir. Pola menunjukkan anomali pada transaksi dana desa.</p>
+              <p className="text-gray-300 text-sm">Laporan SARA menurun sebanyak 5% dalam satu minggu terakhir.</p>
             </div>
 
             <div className="p-4 bg-orange-600 bg-opacity-20 border border-orange-600 rounded-lg">
               <div className="flex items-center justify-between mb-2">
                 <h4 className="text-orange-400 font-medium">Analisis Sentimen</h4>
-                <span className="text-orange-400 text-sm">Confidence: 72%</span>
+                {/* <span className="text-orange-400 text-sm">Confidence: 72%</span> */}
               </div>
               <p className="text-gray-300 text-sm">Sentimen negatif meningkat 23% pada media sosial terkait transparansi keuangan desa.</p>
             </div>
 
-            <div className="p-4 bg-red-600 bg-opacity-20 border border-red-600 rounded-lg">
+            {/* <div className="p-4 bg-blue-600 bg-opacity-20 border border-green-600 rounded-lg">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-red-400 font-medium">Prediksi Risiko</h4>
-                <span className="text-red-400 text-sm">Confidence: 94%</span>
+                <h4 className="text-red-400 font-medium">Tren Laporan</h4>
+                <span className="text-red-400 text-sm"> +4%</span>
               </div>
               <p className="text-gray-300 text-sm">8 desa diprediksi akan mengalami peningkatan risiko korupsi dalam 2 minggu ke depan.</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

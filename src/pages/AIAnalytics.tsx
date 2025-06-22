@@ -4,10 +4,9 @@ import 'leaflet/dist/leaflet.css';
 import { 
   TrendingUp, 
   AlertTriangle, 
-  DollarSign,
   MessageSquare,
   Shield,
-  BarChart3,
+  Eye,
   Map,
   MapPin,
   Users,
@@ -16,6 +15,12 @@ import {
   Hash,
   Zap,
   XCircle,
+  DollarSign,
+  Landmark,
+  Pickaxe,
+  Wallet,
+  Tractor,
+  Siren,
 } from 'lucide-react';
 import { 
   XAxis,
@@ -30,12 +35,21 @@ import {
 } from 'recharts';
 
 const sentimentData = [
-  { platform: 'Instagram', positive: 45, negative: 32, neutral: 23, mentions: 2847, engagement: 8.4 },
-  { platform: 'Twitter/X', positive: 38, negative: 42, neutral: 20, mentions: 3521, engagement: 12.7 },
-  { platform: 'Facebook', positive: 52, negative: 28, neutral: 20, mentions: 1923, engagement: 6.2 },
-  { platform: 'TikTok', positive: 41, negative: 35, neutral: 24, mentions: 1456, engagement: 15.3 },
-  { platform: 'Detik', positive: 35, negative: 48, neutral: 17, mentions: 892, engagement: 4.8 },
-  { platform: 'Kompas', positive: 42, negative: 38, neutral: 20, mentions: 654, engagement: 3.2 },
+  { platform: 'Jakarta', sara: 45, infrastructure: 32, pangan: 23, keuangan: 12, kriminal: 8 },
+  { platform: 'Bandung', sara: 12, infrastructure: 22, pangan: 43, keuangan: 9, kriminal: 28 },
+  { platform: 'Surabaya', sara: 8, infrastructure: 12, pangan: 33, keuangan: 9, kriminal: 14 },
+  { platform: 'Medan', sara: 48, infrastructure: 8, pangan: 3, keuangan: 44, kriminal: 33 },
+  { platform: 'Makasar', sara: 5, infrastructure: 21, pangan: 31, keuangan: 12, kriminal: 8 },
+  { platform: 'Papua', sara: 2, infrastructure: 9, pangan: 20, keuangan: 18, kriminal: 22 },
+];
+
+const sentimentDatax = [
+  { platform: 'Jakarta', sara: 45, infrastructure: 32, pangan: 23, keuangan: 12, kriminal: 8 },
+  { platform: 'Bandung', positive: 38, negative: 42, neutral: 20, mentions: 3521, engagement: 12.7 },
+  { platform: 'Surabaya', positive: 52, negative: 28, neutral: 20, mentions: 1923, engagement: 6.2 },
+  { platform: 'Medan', positive: 41, negative: 35, neutral: 24, mentions: 1456, engagement: 15.3 },
+  { platform: 'Makasar', positive: 35, negative: 48, neutral: 17, mentions: 892, engagement: 4.8 },
+  { platform: 'Papua', positive: 42, negative: 38, neutral: 20, mentions: 654, engagement: 3.2 },
 ];
 
 const sentimentTrends = [
@@ -121,7 +135,7 @@ const villageData = [
     id: 1,
     name: 'Desa Sukamaju',
     position: [-6.2088, 106.8456],
-    corruptionIndex: 8.5,
+    corruptionIndex: 8,
     transparencyScore: 6.2,
     governanceScore: 7.1,
     population: 3240,
@@ -134,7 +148,7 @@ const villageData = [
     id: 2,
     name: 'Desa Makmur',
     position: [-6.1745, 106.8227],
-    corruptionIndex: 4.2,
+    corruptionIndex: 4,
     transparencyScore: 8.7,
     governanceScore: 8.9,
     population: 2890,
@@ -147,7 +161,7 @@ const villageData = [
     id: 3,
     name: 'Desa Sejahtera',
     position: [-6.2297, 106.8677],
-    corruptionIndex: 7.8,
+    corruptionIndex: 7,
     transparencyScore: 5.4,
     governanceScore: 6.8,
     population: 4120,
@@ -160,7 +174,7 @@ const villageData = [
     id: 4,
     name: 'Desa Harmoni',
     position: [-6.1567, 106.8890],
-    corruptionIndex: 5.9,
+    corruptionIndex: 5,
     transparencyScore: 7.3,
     governanceScore: 7.6,
     population: 2150,
@@ -198,6 +212,7 @@ export function AIAnalytics() {
 
   const tabs = [
     { id: 'map', label: 'Peta Intelijen', icon: Map },
+    { id: 'issue', label: 'Issue Monitoring', icon: Eye },
     { id: 'sentiment', label: 'Analisis Sentimen', icon: MessageSquare },
   ];
 
@@ -284,7 +299,7 @@ export function AIAnalytics() {
       </div>
 
       {/* Platform Analysis */}
-      <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+      {/* <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
         <h3 className="text-xl font-semibold text-white mb-4">Analisis Sentimen per Platform</h3>
         <ResponsiveContainer width="100%" height={400}>
           <BarChart data={sentimentData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -304,7 +319,7 @@ export function AIAnalytics() {
             <Bar dataKey="negative" stackId="a" fill="#EF4444" />
           </BarChart>
         </ResponsiveContainer>
-      </div>
+      </div> */}
 
       {/* Detailed Topic Analysis */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -459,8 +474,268 @@ export function AIAnalytics() {
     </div>
   );
 
-  const renderIntelligenceMap = () => (
+  const renderIssueMonitoring = () => (
     <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">SARA</p>
+              <p className="text-3xl font-bold text-white">242</p>
+              <p className="text-red-400 text-sm">↑ 5% dari bulan lalu</p>
+            </div>
+            <AlertTriangle className="h-12 w-12 text-red-500" />
+          </div>
+        </div>
+        
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Infrastruktur</p>
+              <p className="text-3xl font-bold text-white">137</p>
+              <p className="text-red-400 text-sm">↑ 12% dari bulan lalu</p>
+            </div>
+            <Pickaxe className="h-12 w-12 text-red-500" />
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Pangan &amp; Pertanian</p>
+              <p className="text-3xl font-bold text-white">112</p>
+              <p className="text-green-400 text-sm">&#8595; 12% dari bulan lalu</p>
+            </div>
+            <Tractor className="h-12 w-12 text-green-500" />
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Keuangan</p>
+              <p className="text-3xl font-bold text-white">98</p>
+              <p className="text-green-400 text-sm">&#8595; 1% dari bulan lalu</p>
+            </div>
+            <Wallet className="h-12 w-12 text-green-500" />
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-4 rounded-lg border border-gray-700">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-gray-400 text-sm">Kriminal</p>
+              <p className="text-3xl font-bold text-white">350</p>
+              <p className="text-green-400 text-sm">&#8595; 4% dari bulan lalu</p>
+            </div>
+            <Siren className="h-12 w-12 text-green-500" />
+          </div>
+        </div>
+      </div>
+
+      {/* Sentiment Trend Chart */}
+      <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        <h3 className="text-xl font-semibold text-white mb-4">Tren Issue SARA 7 Hari Terakhir</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <AreaChart data={sentimentTrends}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <XAxis dataKey="date" stroke="#9CA3AF" />
+            <YAxis stroke="#9CA3AF" />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: '#1F2937', 
+                border: '1px solid #374151',
+                borderRadius: '8px',
+                color: '#F9FAFB'
+              }} 
+            />
+            {/* <Area type="monotone" dataKey="positive" stackId="1" stroke="#10B981" fill="#10B981" fillOpacity={0.6} />
+            <Area type="monotone" dataKey="neutral" stackId="1" stroke="#6B7280" fill="#6B7280" fillOpacity={0.6} /> */}
+            <Area type="monotone" dataKey="negative" stackId="1" stroke="#EF4444" fill="#EF4444" fillOpacity={0.6} />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Platform Analysis */}
+      <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        <h3 className="text-xl font-semibold text-white mb-4">Analisis Sentimen per Kota</h3>
+        <ResponsiveContainer width="100%" height={400}>
+          <BarChart data={sentimentData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+            <XAxis dataKey="platform" stroke="#9CA3AF" />
+            <YAxis stroke="#9CA3AF" />
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: '#1F2937', 
+                border: '1px solid #374151',
+                borderRadius: '8px',
+                color: '#F9FAFB'
+              }} 
+            />
+            <Bar dataKey="sara" stackId="a" fill="#10B981" fillOpacity={0.6} />
+            <Bar dataKey="infrastructure" stackId="a" fill="#fb923c" fillOpacity={0.6} />
+            <Bar dataKey="pangan" stackId="a" fill="#EF4444" fillOpacity={0.6} />
+            <Bar dataKey="keuangan" stackId="a" fill="#60a5fa" fillOpacity={0.6} />
+            <Bar dataKey="kriminal" stackId="a" fill="#c084fc" fillOpacity={0.6} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Detailed Topic Analysis */}
+      {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+          <h3 className="text-xl font-semibold text-white mb-4">Analisis Topik Mendalam</h3>
+          <div className="space-y-4">
+            {detailedSentimentAnalysis.map((topic, index) => (
+              <div key={index} className="p-4 bg-gray-700 rounded-lg cursor-pointer hover:bg-gray-600 transition-colors"
+                   onClick={() => setSelectedSentimentTopic(topic)}>
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-white font-medium">{topic.topic}</h4>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-400 text-sm">{topic.mentions} mentions</span>
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                      topic.sentiment <= -0.6 ? 'bg-red-600 text-white' :
+                      topic.sentiment <= -0.3 ? 'bg-orange-600 text-white' :
+                      topic.sentiment <= 0.3 ? 'bg-gray-600 text-white' :
+                      'bg-green-600 text-white'
+                    }`}>
+                      {(topic.sentiment * 100).toFixed(0)}%
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4 mb-3">
+                  <div>
+                    <p className="text-gray-400 text-xs">Peak Time</p>
+                    <p className="text-white text-sm">{topic.peakTime}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-xs">Top Influencer</p>
+                    <p className="text-white text-sm">{topic.influencers[0].name}</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-1 mb-3">
+                  {topic.keywords.map((keyword, idx) => (
+                    <span key={idx} className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">
+                      #{keyword}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-4 gap-2 text-xs">
+                  {Object.entries(topic.platforms).map(([platform, data]) => (
+                    <div key={platform} className="text-center">
+                      <p className="text-gray-400 capitalize">{platform}</p>
+                      <p className="text-white font-medium">{data.mentions}</p>
+                      <div className={`w-full h-1 rounded ${
+                        data.sentiment <= -0.5 ? 'bg-red-500' :
+                        data.sentiment <= -0.2 ? 'bg-orange-500' :
+                        data.sentiment <= 0.2 ? 'bg-gray-500' :
+                        'bg-green-500'
+                      }`}></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+          <h3 className="text-xl font-semibold text-white mb-4">Analisis Media Berita</h3>
+          <div className="space-y-4">
+            {newsAnalysis.map((news, index) => (
+              <div key={index} className="p-4 bg-gray-700 rounded-lg">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="text-white font-medium">{news.source}</h4>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-400 text-sm">{news.articles} artikel</span>
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                      news.sentiment === 'Positive' ? 'bg-green-600 text-white' :
+                      news.sentiment === 'Negative' ? 'bg-red-600 text-white' :
+                      news.sentiment === 'Mixed' ? 'bg-orange-600 text-white' :
+                      'bg-gray-600 text-white'
+                    }`}>
+                      {news.sentiment}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 mb-3 text-sm">
+                  <div>
+                    <span className="text-gray-400">Reach: </span>
+                    <span className="text-white font-medium">{(news.reach / 1000000).toFixed(1)}M</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-400">Engagement: </span>
+                    <span className="text-white font-medium">{news.engagement}%</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-gray-400 text-xs">Top Topics:</p>
+                  {news.topics.slice(0, 3).map((topic, idx) => (
+                    <div key={idx} className="flex items-center justify-between text-sm">
+                      <span className="text-white">{topic.topic}</span>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-gray-400">{topic.count}</span>
+                        <div className={`w-12 h-2 rounded ${
+                          topic.sentiment <= -0.5 ? 'bg-red-500' :
+                          topic.sentiment <= -0.2 ? 'bg-orange-500' :
+                          topic.sentiment <= 0.2 ? 'bg-gray-500' :
+                          'bg-green-500'
+                        }`}></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div> */}
+
+      {/* Geographic Sentiment Distribution */}
+      {/* <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        <h3 className="text-xl font-semibold text-white mb-4">Distribusi Sentimen Geografis</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {[
+            { region: 'Jakarta', positive: 35, negative: 45, neutral: 20, mentions: 2847 },
+            { region: 'Bandung', positive: 42, negative: 38, neutral: 20, mentions: 1923 },
+            { region: 'Surabaya', positive: 38, negative: 42, neutral: 20, mentions: 1654 },
+            { region: 'Medan', positive: 33, negative: 48, neutral: 19, mentions: 1234 },
+          ].map((region, index) => (
+            <div key={index} className="p-4 bg-gray-700 rounded-lg">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="text-white font-medium">{region.region}</h4>
+                <span className="text-gray-400 text-sm">{region.mentions}</span>
+              </div>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-green-400">Positif</span>
+                  <span className="text-white">{region.positive}%</span>
+                </div>
+                <div className="w-full bg-gray-600 rounded-full h-2">
+                  <div className="bg-green-500 h-2 rounded-full" style={{ width: `${region.positive}%` }}></div>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-red-400">Negatif</span>
+                  <span className="text-white">{region.negative}%</span>
+                </div>
+                <div className="w-full bg-gray-600 rounded-full h-2">
+                  <div className="bg-red-500 h-2 rounded-full" style={{ width: `${region.negative}%` }}></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div> */}
+    </div>
+  );
+
+  const renderIntelligenceMap = () => (
+    <div className="p-6 space-y-6">
       {/* Header with Score Cards */}
       {/* <div className="flex items-center justify-between">
         <div>
@@ -475,7 +750,7 @@ export function AIAnalytics() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-gray-400 text-sm">Total Desa</p>
-              <p className="text-3xl font-bold text-white">1,247</p>
+              <p className="text-3xl font-bold text-white">83.971</p>
               <p className="text-blue-400 text-sm">Aktif dipantau</p>
             </div>
             <MapPin className="h-12 w-12 text-blue-500" />
@@ -562,9 +837,8 @@ export function AIAnalytics() {
                   <Popup>
                     <div className="text-gray-900">
                       <h4 className="font-bold">{village.name}</h4>
-                      <p>Indeks Korupsi: {village.corruptionIndex}/10</p>
-                      <p>Laporan Aktif: {village.activeReports}</p>
-                      <p>Kasus: {village.cases}</p>
+                      <p>Kec. Cibinong</p>
+                      <p>Kepala Desa: Nama Orang</p>
                     </div>
                   </Popup>
                 </CircleMarker>
@@ -573,7 +847,7 @@ export function AIAnalytics() {
           </div>
 
           {/* Legend */}
-          <div className="p-4 border-t border-gray-700 bg-gray-900">
+          {/* <div className="p-4 border-t border-gray-700 bg-gray-900">
             <h4 className="text-white font-medium mb-2">Legenda Tingkat Risiko</h4>
             <div className="flex items-center space-x-6">
               <div className="flex items-center space-x-2">
@@ -589,7 +863,7 @@ export function AIAnalytics() {
                 <span className="text-gray-300 text-sm">Rendah (0-4.9)</span>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Village Details Sidebar */}
@@ -612,54 +886,54 @@ export function AIAnalytics() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-700 p-3 rounded-lg">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <AlertTriangle className="h-4 w-4 text-red-400" />
-                      <span className="text-gray-300 text-sm">Indeks Korupsi</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{selectedVillage.corruptionIndex}</p>
-                  </div>
-
-                  <div className="bg-gray-700 p-3 rounded-lg">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Shield className="h-4 w-4 text-blue-400" />
-                      <span className="text-gray-300 text-sm">Skor Transparansi</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{selectedVillage.transparencyScore}</p>
-                  </div>
-
-                  <div className="bg-gray-700 p-3 rounded-lg">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <BarChart3 className="h-4 w-4 text-green-400" />
-                      <span className="text-gray-300 text-sm">Skor Tata Kelola</span>
-                    </div>
-                    <p className="text-2xl font-bold text-white">{selectedVillage.governanceScore}</p>
-                  </div>
-
-                  <div className="bg-gray-700 p-3 rounded-lg">
+                <div className="bg-gray-700 p-3 rounded-lg">
                     <div className="flex items-center space-x-2 mb-2">
                       <Users className="h-4 w-4 text-purple-400" />
                       <span className="text-gray-300 text-sm">Populasi</span>
                     </div>
                     <p className="text-2xl font-bold text-white">{selectedVillage.population.toLocaleString()}</p>
                   </div>
+
+                  <div className="bg-gray-700 p-3 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <DollarSign className="h-4 w-4 text-green-400" />
+                      <span className="text-gray-300 text-sm">Anggaran Desa</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">Rp {(selectedVillage.budget / 1000000000).toFixed(1)}M</p>
+                  </div>
+
+                  <div className="bg-gray-700 p-3 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <Shield className="h-4 w-4 text-blue-400" />
+                      <span className="text-gray-300 text-sm">Laporan Aktif</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">{selectedVillage.activeReports}</p>
+                  </div>
+
+                  <div className="bg-gray-700 p-3 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <AlertTriangle className="h-4 w-4 text-red-400" />
+                      <span className="text-gray-300 text-sm">Kasus Terbuka</span>
+                    </div>
+                    <p className="text-2xl font-bold text-white">{selectedVillage.cases}</p>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
-                  <div className="flex justify-between items-center">
+                  {/* <div className="flex justify-between items-center">
                     <span className="text-gray-300">Anggaran Desa</span>
                     <span className="text-white font-medium">
                       Rp {(selectedVillage.budget / 1000000000).toFixed(1)}M
                     </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Laporan Aktif</span>
-                    <span className="text-orange-400 font-medium">{selectedVillage.activeReports}</span>
+                  </div> */}
+                  {/* <div className="flex justify-between items-center">
+                    <span className="text-gray-300">Skor Transparansi</span>
+                    <span className="text-orange-400 font-medium">{selectedVillage.transparencyScore}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-300">Kasus Terbuka</span>
                     <span className="text-red-400 font-medium">{selectedVillage.cases}</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -739,6 +1013,7 @@ export function AIAnalytics() {
       {/* Tab Content */}
       <div>
         {activeTab === 'map' && renderIntelligenceMap()}
+        {activeTab === 'issue' && renderIssueMonitoring()}
         {activeTab === 'sentiment' && renderSentimentAnalysis()}
       </div>
 

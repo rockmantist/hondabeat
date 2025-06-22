@@ -61,8 +61,8 @@ const reporterTraces = [
     riskScore: 7.8,
     vpnDetected: true,
     previousReports: 12,
-    ipAnomalyCount: 8,
-    isIpAnomaly: true
+    ipAnomalyCount: 1,
+    isIpAnomaly: false
   },
   {
     id: 'RPT-004',
@@ -91,8 +91,8 @@ const reporterTraces = [
     riskScore: 8.5,
     vpnDetected: true,
     previousReports: 15,
-    ipAnomalyCount: 8,
-    isIpAnomaly: true
+    ipAnomalyCount: 1,
+    isIpAnomaly: false
   },
   {
     id: 'RPT-006',
@@ -106,8 +106,8 @@ const reporterTraces = [
     riskScore: 9.2,
     vpnDetected: true,
     previousReports: 18,
-    ipAnomalyCount: 8,
-    isIpAnomaly: true
+    ipAnomalyCount: 0,
+    isIpAnomaly: false
   }
 ];
 
@@ -233,15 +233,15 @@ export function AdminPanel() {
         <div className="flex space-x-4 mb-6">
           <button
             onClick={() => setActiveTab('traces')}
-            className={`px-4 py-2 rounded-lg transition-colors ${
+            className={`px-4 py-2 rounded-xs transition-colors ${
               activeTab === 'traces' 
                 ? 'bg-blue-600 text-white' 
                 : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
             }`}
           >
-            Intelligence Tracking
+            
           </button>
-          <button
+          {/* <button
             onClick={() => setActiveTab('anomalies')}
             className={`px-4 py-2 rounded-lg transition-colors ${
               activeTab === 'anomalies' 
@@ -250,13 +250,13 @@ export function AdminPanel() {
             }`}
           >
             IP Anomali Detection
-          </button>
+          </button> */}
         </div>
 
         {activeTab === 'traces' && (
           <>
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-semibold text-white">Intelligence Tracking Pelapor</h2>
+              <h2 className="text-2xl font-semibold text-white">Intelligence Tracking Pengguna</h2>
               <div className="flex items-center space-x-4">
                 <select 
                   value={filter}
@@ -285,8 +285,8 @@ export function AdminPanel() {
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">IP Address</th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Lokasi</th>
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Device</th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Risk Score</th>
-                    <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
+                    {/* <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Risk Score</th> */}
+                    {/* <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th> */}
                     <th className="px-6 py-4 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Aksi</th>
                   </tr>
                 </thead>
@@ -326,7 +326,7 @@ export function AdminPanel() {
                           <span className="text-sm text-white">{trace.deviceType}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      {/* <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center space-x-2">
                           <span className={`text-sm font-medium ${getRiskColor(trace.riskScore)}`}>
                             {trace.riskScore}/10
@@ -335,8 +335,8 @@ export function AdminPanel() {
                             {trace.riskScore >= 7 ? 'High' : trace.riskScore >= 4 ? 'Medium' : 'Low'}
                           </span>
                         </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      </td> */}
+                      {/* <td className="px-6 py-4 whitespace-nowrap">
                         <div className="space-y-1">
                           {trace.anonymous && (
                             <span className="inline-block px-2 py-1 text-xs bg-yellow-600 text-white rounded-full">
@@ -354,7 +354,7 @@ export function AdminPanel() {
                             </span>
                           )}
                         </div>
-                      </td>
+                      </td> */}
                       <td className="px-6 py-4 whitespace-nowrap">
                         <button 
                           onClick={() => setSelectedTrace(trace)}
@@ -472,7 +472,7 @@ export function AdminPanel() {
 
       {/* Security Alerts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        {/* <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
           <h3 className="text-xl font-semibold text-white mb-4">Security Alerts</h3>
           <div className="space-y-4">
             {[
@@ -525,7 +525,7 @@ export function AdminPanel() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
           <h3 className="text-xl font-semibold text-white mb-4">System Health</h3>
