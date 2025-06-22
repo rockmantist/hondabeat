@@ -54,7 +54,7 @@ export function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Dashboard Intelijen</h1>
+          <h1 className="text-3xl font-bold text-white">Dashboard Intelijen JagaDesa</h1>
           <p className="text-gray-400 mt-1">Monitoring dan analisis real-time sistem desa</p>
         </div>
         <div className="flex items-center space-x-4">
